@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>West Coast Cars - Premium Car Advertising | Western Cape, South Africa</title>
+  <meta name="description" content="Advertise your car on the West Coast of South Africa. Premium car listing service covering Saldanha, Vredenburg, Langebaan, and surrounding areas.">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #f9f9f9;
+      --text-light: #333333;
+      --bg-dark: #121a24;
+      --text-dark: #f0f0f0;
+      --accent: #e74c3c;
+      --accent-hover: #c0392b;
+      --secondary: #27ae60;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #1e2a3a;
+      --card-shadow-light: 0 8px 20px rgba(0,0,0,0.08);
+      --card-shadow-dark: 0 8px 20px rgba(0,0,0,0.25);
+      --form-bg-light: #ffffff;
+      --form-bg-dark: #1e2a3a;
+      --input-bg-light: #f0f4f8;
+      --input-bg-dark: #2c3e50;
+      --tag-bg-light: #e8f4fc;
+      --tag-bg-dark: #2c3e50;
+      --warning: #f39c12;
+      --success: #27ae60;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 2.5rem 1rem 2rem;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    body.light header {
+      background: linear-gradient(135deg, #e8f5e8, #f0f8ff);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    body.dark header {
+      background: linear-gradient(135deg, #192030, #121a24);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-icon {
+      font-size: 2.2rem;
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      margin-right: 15px;
+      box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+    }
+
+    .brand-text {
+      text-align: left;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin: 0.3rem 0;
+      opacity: 0.8;
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: 1.1rem;
+      margin: 0.8rem 0;
+      opacity: 0.9;
+    }
+
+    .pricing-banner {
+      background: var(--secondary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      margin: 1rem 0;
+      font-weight: 600;
+      display: inline-block;
+      box-shadow: 0 4px 8px rgba(39, 174, 96, 0.25);
+    }
+
+    .contact {
+      margin-top: 1.2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact a {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(231, 76, 60, 0.25);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(231, 76, 60, 0.3);
+    }
+
+    .contact-icon {
+      margin-right: 8px;
+    }
+
+    .mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(231, 76, 60, 0.9);
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .mode-toggle:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .service-info {
+      background: var(--warning);
+      color: white;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(243, 156, 18, 0.25);
+    }
+
+    .service-info h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .featured-areas {
+      background: rgba(231, 76, 60, 0.1);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .featured-areas h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .areas-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .area-tag {
+      background: var(--accent);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .listings {
+      display: grid;
+      gap: 1.5rem;
+      padding: 2rem 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .car-card {
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    body.light .car-card {
+      background: var(--card-bg-light);
+      box-shadow: var(--card-shadow-light);
+    }
+
+    body.dark .car-card {
+      background: var(--card-bg-dark);
+      box-shadow: var(--card-shadow-dark);
+    }
+
+    .car-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--secondary);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .car-image-container {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .car-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .car-card:hover .car-image {
+      transform: scale(1.05);
+    }
+
+    .car-info {
+      padding: 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .car-info h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(150,150,150,0.15);
+      font-size: 0.9rem;
+    }
+
+    .detail {
+      display: flex;
+      align-items: center;
+    }
+
+    .detail i {
+      margin-right: 5px;
+      opacity: 0.8;
+    }
+
+    .form-section {
+      padding: 3rem 1.5rem;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .form-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+      color: var(--accent);
+    }
+
+    .form-section h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .pricing-info {
+      text-align: center;
+      margin-bottom: 2rem;
+      background: var(--secondary);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(39, 174, 96, 0.25);
+    }
+
+    .pricing-info h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .pricing-info p {
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .pricing-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .pricing-item strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-container {
+      border-radius: 15px;
+      padding: 2rem;
+    }
+
+    body.light .form-container {
+      background: var(--form-bg-light);
+      box-shadow: var(--card-shadow-light);
+    }
+
+    body.dark .form-container {
+      background: var(--form-bg-dark);
+      box-shadow: var(--card-shadow-dark);
+    }
+
+    form {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(150,150,150,0.2);
+      transition: all 0.3s;
+    }
+
+    body.light input, body.light textarea, body.light select {
+      background: var(--input-bg-light);
+      color: var(--text-light);
+    }
+
+    body.dark input, body.dark textarea, body.dark select {
+      background: var(--input-bg-dark);
+      color: var(--text-dark);
+      border-color: rgba(150,150,150,0.1);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      grid-column: 1 / -1;
+    }
+
+    .submit-btn {
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(231, 76, 60, 0.25);
+      grid-column: 1 / -1;
+    }
+
+    .submit-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(231, 76, 60, 0.3);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    body.light .form-note {
+      background: var(--tag-bg-light);
+    }
+
+    body.dark .form-note {
+      background: var(--tag-bg-dark);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(150,150,150,0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .listings {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .logo-icon {
+        font-size: 1.8rem;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+
+      .contact {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-details {
+        grid-template-columns: 1fr;
+      }
+
+      .areas-list {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="dark">
+  <button class="mode-toggle" onclick="toggleMode()">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <header>
+    <div class="container">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <i class="fas fa-car"></i>
+        </div>
+        <div class="brand-text">
+          <h1>West Coast Cars</h1>
+          <p class="subtitle">Premium Car Advertising Service</p>
+        </div>
+      </div>
+      <p class="tagline">Your trusted partner for car sales on the West Coast</p>
+      <div class="pricing-banner">
+        <i class="fas fa-star"></i> Professional Car Listings from R299
+      </div>
+      <div class="contact">
+        <a href="tel:+2796863009">
+          <i class="fas fa-phone-alt contact-icon"></i>
+          0796863009
+        </a>
+        <a href="mailto:andrewsince74@gmail.com">
+          <i class="fas fa-envelope contact-icon"></i>
+          Email Us
+        </a>
+        <a href="https://wa.me/2796863009">
+          <i class="fab fa-whatsapp contact-icon"></i>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="service-info">
+      <h3><i class="fas fa-bullhorn"></i> Professional Car Advertising Service</h3>
+      <p>We advertise your car across multiple platforms to ensure maximum exposure and quick sales. Our service includes professional photography, detailed listings, and ongoing support until your car is sold.</p>
+    </div>
+
+    <div class="featured-areas">
+      <h3><i class="fas fa-map-marker-alt"></i> Serving the West Coast</h3>
+      <div class="areas-list">
+        <span class="area-tag">Saldanha</span>
+        <span class="area-tag">Vredenburg</span>
+        <span class="area-tag">Langebaan</span>
+        <span class="area-tag">Paternoster</span>
+        <span class="area-tag">St Helena Bay</span>
+        <span class="area-tag">Jacobsbaai</span>
+        <span class="area-tag">Hopefield</span>
+        <span class="area-tag">Velddrif</span>
+      </div>
+    </div>
+
+    <div class="listings">
+      <a href="#" class="car-card">
+        <div class="featured-badge">FEATURED</div>
+        <div class="car-image-container">
+          <img class="car-image" src="https://via.placeholder.com/400x200/e74c3c/ffffff?text=Toyota+Hilux+2.8GD" alt="Toyota Hilux">
+        </div>
+        <div class="car-info">
+          <h3>Toyota Hilux 2.8 GD-6 Double Cab</h3>
+          <div class="price">R399,000</div>
+          <div class="details">
+            <span class="detail"><i class="fas fa-map-marker-alt"></i> Saldanha</span>
+            <span class="detail"><i class="fas fa-calendar-alt"></i> 2020</span>
+            <span class="detail"><i class="fas fa-road"></i> 72,000km</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="#" class="car-card">
+        <div class="car-image-container">
+          <img class="car-image" src="https://via.placeholder.com/400x200/27ae60/ffffff?text=VW+Polo+Vivo" alt="VW Polo">
+        </div>
+        <div class="car-info">
+          <h3>VW Polo Vivo 1.4 Comfortline</h3>
+          <div class="price">R189,000</div>
+          <div class="details">
+            <span class="detail"><i class="fas fa-map-marker-alt"></i> Vredenburg</span>
+            <span class="detail"><i class="fas fa-calendar-alt"></i> 2022</span>
+            <span class="detail"><i class="fas fa-road"></i> 38,000km</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="#" class="car-card">
+        <div class="featured-badge">FEATURED</div>
+        <div class="car-image-container">
+          <img class="car-image" src="https://via.placeholder.com/400x200/3498db/ffffff?text=Ford+Ranger+XLT" alt="Ford Ranger">
+        </div>
+        <div class="car-info">
+          <h3>Ford Ranger XLT 3.2 TDCi</h3>
+          <div class="price">R489,000</div>
+          <div class="details">
+            <span class="detail"><i class="fas fa-map-marker-alt"></i> Langebaan</span>
+            <span class="detail"><i class="fas fa-calendar-alt"></i> 2021</span>
+            <span class="detail"><i class="fas fa-road"></i> 61,500km</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="car-card">
+        <div class="car-image-container">
+          <img class="car-image" src="https://via.placeholder.com/400x200/9b59b6/ffffff?text=BMW+320i" alt="BMW 320i">
+        </div>
+        <div class="car-info">
+          <h3>BMW 320i M Sport Auto</h3>
+          <div class="price">R285,000</div>
+          <div class="details">
+            <span class="detail"><i class="fas fa-map-marker-alt"></i> Paternoster</span>
+            <span class="detail"><i class="fas fa-calendar-alt"></i> 2019</span>
+            <span class="detail"><i class="fas fa-road"></i> 95,000km</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="car-card">
+        <div class="car-image-container">
+          <img class="car-image" src="https://via.placeholder.com/400x200/f39c12/ffffff?text=Nissan+NP200" alt="Nissan NP200">
+        </div>
+        <div class="car-info">
+          <h3>Nissan NP200 1.6 A/C Safety Pack</h3>
+          <div class="price">R149,000</div>
+          <div class="details">
+            <span class="detail"><i class="fas fa-map-marker-alt"></i> Hopefield</span>
+            <span class="detail"><i class="fas fa-calendar-alt"></i> 2021</span>
+            <span class="detail"><i class="fas fa-road"></i> 45,000km</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="car-card">
+        <div class="car-image-container">
+          <img class="car-image" src="https://via.placeholder.com/400x200/e67e22/ffffff?text=Isuzu+KB" alt="Isuzu KB">
+        </div>
+        <div class="car-info">
+          <h3>Isuzu KB 250 D-TEQ Extended Cab</h3>
+          <div class="price">R329,000</div>
+          <div class="details">
+            <span class="detail"><i class="fas fa-map-marker-alt"></i> Velddrif</span>
+            <span class="detail"><i class="fas fa-calendar-alt"></i> 2020</span>
+            <span class="detail"><i class="fas fa-road"></i> 68,500km</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h2>List Your Car With Us</h2>
+    
+    <div class="pricing-info">
+      <h3><i class="fas fa-tags"></i> Our Advertising Packages</h3>
+      <p>Choose the package that best suits your needs</p>
+      <div class="pricing-details">
+        <div class="pricing-item">
+          <strong>Basic Package - R299</strong>
+          <small>Standard listing for 30 days</small>
+        </div>
+        <div class="pricing-item">
+          <strong>Premium Package - R499</strong>
+          <small>Featured listing + professional photos</small>
+        </div>
+        <div class="pricing-item">
+          <strong>Platinum Package - R699</strong>
+          <small>Top placement + full marketing support</small>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-container">
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" name="owner_name" placeholder="Your Full Name *" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone Number *" required />
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address *" required />
+          </div>
+          <div class="form-group">
+            <select name="location" required>
+              <option value="">Select Location *</option>
+              <option value="Saldanha">Saldanha</option>
+              <option value="Vredenburg">Vredenburg</option>
+              <option value="Langebaan">Langebaan</option>
+              <option value="Paternoster">Paternoster</option>
+              <option value="St Helena Bay">St Helena Bay</option>
+              <option value="Jacobsbaai">Jacobsbaai</option>
+              <option value="Hopefield">Hopefield</option>
+              <option value="Velddrif">Velddrif</option>
+              <option value="Other West Coast">Other West Coast Area</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" name="car_make" placeholder="Car Make (e.g. Toyota) *" required />
+          </div>
+          <div class="form-group">
+            <input type="text" name="car_model" placeholder="Car Model (e.g. Hilux) *" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <input type="number" name="year" placeholder="Year *" min="1990" max="2025" required />
+          </div>
+          <div class="form-group">
+            <input type="text" name="price" placeholder="Asking Price (R) *" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" name="mileage" placeholder="Mileage (km)" />
+          </div>
+          <div class="form-group">
+            <select name="transmission">
+              <option value="">Transmission</option>
+              <option value="Manual">Manual</option>
+              <option value="Automatic">Automatic</option>
+              <option value="Semi-Automatic">Semi-Automatic</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <select name="fuel_type">
+              <option value="">Fuel Type</option>
+              <option value="Petrol">Petrol</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="Electric">Electric</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select name="package" required>
+              <option value="">Select Package *</option>
+              <option value="Basic - R299">Basic Package - R299</option>
+              <option value="Premium - R499">Premium Package - R499</option>
+              <option value="Platinum - R699">Platinum Package - R699</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <textarea name="description" placeholder="Car Description (condition, service history, extras, etc.)" rows="4"></textarea>
+        </div>
+
+        <div class="form-group full-width">
+          <textarea name="additional_info" placeholder="Additional Information (financing available, reason for selling, etc.)" rows="3"></textarea>
+        </div>
+
+        <button class="submit-btn" type="submit">
+          <i class="fas fa-paper-plane"></i> Submit Car Listing Request
+        </button>
+      </form>
+      
+      <div class="form-note">
+        <i class="fas fa-info-circle"></i> 
+        <strong>Next Steps:</strong> After submitting, we'll contact you within 24 hours to discuss your listing, arrange photography (if needed), and set up payment for your chosen package.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 West Coast Cars. All rights reserved. | Professional Car Advertising Service</p>
+      <p><i class="fas fa-map-marker-alt"></i> Serving Saldanha, Vredenburg, Langebaan & West Coast Areas</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      const body = document.body;
+      const button = document.querySelector('.mode-toggle i');
+      body.classList.toggle('light');
+      body.classList.toggle('dark');
+      
+      if (body.classList.contains('light')) {
+        button.className = 'fas fa-sun';
+      } else {
+        button.className = 'fas
